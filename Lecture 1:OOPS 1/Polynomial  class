@@ -1,0 +1,283 @@
+
+1
+​
+2
+/* Signature of four required functions is given in the code. You can create other functions as well if you need.
+3
+*  Also you should submit your code even if you are not done with all the functions. 
+4
+*/
+5
+​
+6
+// Main used internally is shown here just for your reference.
+7
+/*public static void main(String[] args) {
+8
+        Scanner s = new Scanner(System.in);
+9
+        int n = s.nextInt();
+10
+        int degree1[] = new int[n];
+11
+        for(int i = 0; i < n; i++){
+12
+            degree1[i] = s.nextInt();
+13
+        }
+14
+        int coeff1[] = new int[n];
+15
+        for(int i = 0; i < n; i++){
+16
+            coeff1[i] = s.nextInt();
+17
+        }
+18
+        Polynomial first = new Polynomial();
+19
+        for(int i = 0; i < n; i++){
+20
+            first.setCoefficient(degree1[i],coeff1[i]);
+21
+        }
+22
+        n = s.nextInt();
+23
+        int degree2[] = new int[n];
+24
+        for(int i = 0; i < n; i++){
+25
+            degree2[i] = s.nextInt();
+26
+        }
+27
+         int coeff2[] = new int[n];
+28
+        for(int i = 0; i < n; i++){
+29
+            coeff2[i] = s.nextInt();
+30
+        }
+31
+        Polynomial second = new Polynomial();
+32
+        for(int i = 0; i < n; i++){
+33
+            second.setCoefficient(degree2[i],coeff2[i]);
+34
+        }
+35
+        int choice = s.nextInt();
+36
+        Polynomial result;
+37
+        switch(choice){
+38
+        // Add
+39
+        case 1: 
+40
+             result = first.add(second);
+41
+            result.print();
+42
+            break;
+43
+        // Subtract 
+44
+        case 2 :
+45
+             result = first.subtract(second);
+46
+            result.print();
+47
+            break;
+48
+        // Multiply
+49
+        case 3 :
+50
+             result = first.multiply(second);
+51
+            result.print();
+52
+            break;
+53
+        }
+54
+​
+55
+    }
+56
+  */
+57
+​
+58
+​
+59
+public class Polynomial {
+60
+            int degCoeff[]; 
+61
+      
+62
+    
+63
+        Polynomial() 
+64
+        { 
+65
+          degCoeff = new int[10]; 
+66
+        } 
+67
+    
+68
+    
+69
+           public void setCoefficient(int degree, int coeff)
+70
+           {
+71
+            if(degree > degCoeff.length-1) 
+72
+            {
+73
+                //create a new array with size= degree+1 
+74
+                int temp[] = degCoeff; 
+75
+                degCoeff = new int[degree+1]; 
+76
+                //copy values from temp to degCoeff 
+77
+                
+78
+                
+79
+                for(int i = 0; i < temp.length; i++) 
+80
+                { 
+81
+                    degCoeff[i] = temp[i]; }
+82
+                } 
+83
+                    degCoeff[degree] = coeff; 
+84
+           
+85
+           } 
+86
+        
+87
+        public void print()
+88
+        { 
+89
+            for(int i = 0;i < degCoeff.length; i++) 
+90
+            { 
+91
+                if(degCoeff[i] != 0) 
+92
+                { System.out.print(degCoeff[i] + "x" + i + " "); 
+93
+                } 
+94
+            } 
+95
+        } 
+96
+       
+97
+        public Polynomial add(Polynomial p){ 
+98
+            Polynomial ans = new Polynomial(); 
+99
+            int plen1 = this.degCoeff.length; 
+100
+            int plen2 = p.degCoeff.length; 
+101
+            int len = Math.min(plen1, plen2); 
+102
+            int i; 
+103
+            for(i = 0; i < len; i++) {
+104
+                ans.setCoefficient(i, this.degCoeff[i] + p.degCoeff[i]); } 
+105
+            while(i < plen1){ 
+106
+                ans.setCoefficient(i, this.degCoeff[i]); i++; } 
+107
+            while(i < plen2){ 
+108
+                ans.setCoefficient(i, p.degCoeff[i]); i++; } 
+109
+            return ans; } 
+110
+    
+111
+        public Polynomial subtract(Polynomial p){           // Subtracts two polynomials and returns a new polynomial which has result 
+112
+            int plen1 = this.degCoeff.length; 
+113
+            int plen2 = p.degCoeff.length; 
+114
+            int len = Math.min(plen1, plen2); 
+115
+            Polynomial ans = new Polynomial(); 
+116
+            int i; for(i = 0; i < len; i++) { 
+117
+                ans.setCoefficient(i, this.degCoeff[i] - p.degCoeff[i]); } 
+118
+            while(i < plen1){ 
+119
+                ans.setCoefficient(i, this.degCoeff[i]); i++; } 
+120
+            while(i < plen2){ 
+121
+                ans.setCoefficient(i, -p.degCoeff[i]); i++; } 
+122
+            return ans; } 
+123
+        public int getCoeff(int degree) { 
+124
+            if(degree < this.degCoeff.length) { 
+125
+                return degCoeff[degree]; } 
+126
+            else { 
+127
+                return 0; } 
+128
+        } 
+129
+    
+130
+        public Polynomial multiply(Polynomial p){ 
+131
+            Polynomial ans = new Polynomial(); 
+132
+            for(int i = 0; i < this.degCoeff.length; i++){
+133
+                for(int j = 0; j < p.degCoeff.length; j+=1){ 
+134
+                    int termdeg = i + j; 
+135
+                    int termCoeff = this.degCoeff[i] * p.degCoeff[j]; 
+136
+                    int oldCoeff = ans.getCoeff(termdeg); 
+137
+                    ans.setCoefficient(termdeg, termCoeff + oldCoeff); }
+138
+            } 
+139
+        return ans; 
+140
+    } 
+141
+}
