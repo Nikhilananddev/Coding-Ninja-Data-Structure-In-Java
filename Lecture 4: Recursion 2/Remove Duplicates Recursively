@@ -16,25 +16,19 @@ public class Solution {
 
 	public static String removeConsecutiveDuplicates(String s) {
 		
-        String smallans="";
+       
+ public static String removeConsecutiveDuplicates(String s) {
+  // Write your code here
+        if(s.length()==1){
+            return s;
+        }
+        
         String ans="";
-        // Write your code here
-		if(s.length()==1 || s.length()==0)
-        return s;
-        
-        
-        if(s.charAt(0)==s.charAt(1))
-        { ans=ans+s.charAt(0);
-        	smallans=removeConsecutiveDuplicates(s.substring(2));
-        }
-     
-        if(s.charAt(0)!=s.charAt(1))
-        { ans=ans+s.charAt(0);
-        	smallans=removeConsecutiveDuplicates(s.substring(1));
+        if(s.charAt(0) != s.charAt(1)){
+            ans=ans+s.charAt(0);
         }
         
-	
-    return ans+smallans;
-    }
+        String str1=removeConsecutiveDuplicates(s.substring(1)); 
+        return ans+str1;
 
 }
