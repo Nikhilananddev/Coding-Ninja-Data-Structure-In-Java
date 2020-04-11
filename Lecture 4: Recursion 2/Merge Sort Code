@@ -20,11 +20,11 @@ public class solution {
     
     
     
-   public static  void merge(int arr[], int l, int m, int r) 
+   public static  void merge(int arr[], int start, int mid, int end) 
     { 
         // Find sizes of two subarrays to be merged 
-        int n1 = m - l + 1; 
-        int n2 = r - m; 
+        int n1 = mid - start + 1; 
+        int n2 = end - mid; 
   
         /* Create temp arrays */
         int L[] = new int [n1]; 
@@ -32,9 +32,9 @@ public class solution {
   
         /*Copy data to temp arrays*/
         for (int i=0; i<n1; ++i) 
-            L[i] = arr[l + i]; 
+            L[i] = arr[start + i]; 
         for (int j=0; j<n2; ++j) 
-            R[j] = arr[m + 1+ j]; 
+            R[j] = arr[mid + 1+ j]; 
   
   
         /* Merge the temp arrays */
@@ -43,7 +43,7 @@ public class solution {
         int i = 0, j = 0; 
   
         // Initial index of merged subarry array 
-        int k = l; 
+        int k = start; 
         while (i < n1 && j < n2) 
         { 
             if (L[i] <= R[j]) 
@@ -78,19 +78,19 @@ public class solution {
   
     // Main function that sorts arr[l..r] using 
     // merge() 
-  public static   void sort(int arr[], int l, int r) 
+  public static   void sort(int arr[], int start, int end) 
     { 
-        if (l < r) 
+        if (start < end) 
         { 
             // Find the middle point 
-            int m = (l+r)/2; 
+            int mid = (start+end)/2; 
   
             // Sort first and second halves 
-            sort(arr, l, m); 
-            sort(arr , m+1, r); 
+            sort(arr, start, mid); 
+            sort(arr , mid+1, end); 
   
             // Merge the sorted halves 
-            merge(arr, l, m, r); 
+            merge(arr, start, mid, end); 
         } 
     } 
   
