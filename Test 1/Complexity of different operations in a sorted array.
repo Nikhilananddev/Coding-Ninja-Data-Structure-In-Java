@@ -1,0 +1,8 @@
+Complexity of different operations in a sorted array.
+Send Feedback
+Which of the following operations is not O(1) for an array of sorted data. You may assume that array elements are distinct.
+Options
+Find the ith largest element
+Delete an element                     ANSWER
+Find the ith smallest element
+All of the above
