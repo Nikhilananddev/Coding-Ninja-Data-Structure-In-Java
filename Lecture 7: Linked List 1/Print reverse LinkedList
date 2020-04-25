@@ -1,0 +1,66 @@
+// Print reverse LinkedList
+// Send Feedback
+// Print a given linked list in reverse order. You need to print the tail first and head last. You can’t change any pointer in the linked list, just print it in reverse order.
+// Input format : Linked List elements (separated by space and terminated by -1)
+
+// Output format : Linked List elements in reverse order (separated by space)
+
+// Sample Input 1 :
+// 1 2 3 4 5 -1
+// Sample Output 1 :
+// 5 4 3 2 1
+// Sample Input 2 :
+// 1 2 3 -1
+// Sample Output 2 :
+// 3 2 1
+
+
+import java.util.*;
+/*
+class LinkedListNode<T> {
+	public T data;
+	public LinkedListNode<T> next;
+
+	public LinkedListNode(T data) {
+		this.setData(data);
+		this.next = null;
+	}
+
+	public T getData() {
+		return data;
+	}
+
+	public void setData(T data) {
+		this.data = data;
+	}
+
+}
+* */
+public class Solution {
+    
+    public static int LengthIterative(LinkedListNode<Integer> head){
+		int count=0;
+		while(head!=null)
+		{
+			count++;
+			head=head.next;
+		}
+		return count;
+	}
+    
+	public static void printReverseRecursive(LinkedListNode<Integer> root) {
+        int length=LengthIterative(root);
+        ArrayList<Integer> list1=new ArrayList<Integer>(length);
+        for(int i=0;i<length;i++)
+        {
+            list1.add(root.data);
+            root=root.next;
+        }
+         for(int i=length-1;i>=0;i--)
+        {
+            System.out.print(list1.get(i)+" ");
+            
+        }
+        //ArrayList<String> list=new ArrayList<String>()
+    }
+}
