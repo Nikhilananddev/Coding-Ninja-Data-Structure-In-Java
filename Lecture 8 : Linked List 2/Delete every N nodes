@@ -1,0 +1,86 @@
+// Delete every N nodes
+// Send Feedback
+// Given a linked list and two integers M and N. Traverse the linked list such that you retain M nodes then delete next N nodes, continue the same until end of the linked list. That is, in the given linked list you need to delete N nodes after every M nodes.
+// Input format :
+
+// Line 1 : Linked list elements (separated by space and terminated by -1)
+
+// Line 2 : M
+
+// Line 3 : N
+
+// Sample Input 1 :
+// 1 2 3 4 5 6 7 8 -1
+// 2
+// 2
+// Sample Output 1 :
+// 1 2 5 6
+// Sample Input 2 :
+// 1 2 3 4 5 6 7 8 -1
+// 2
+// 3
+// Sample Output 2 :
+// 1 2 6 7
+
+
+/*
+class LinkedListNode<T> {
+	public T data;
+	public LinkedListNode<T> next;
+
+	public LinkedListNode(T data) {
+		this.setData(data);
+		this.next = null;
+	}
+
+	public T getData() {
+		return data;
+	}
+
+	public void setData(T data) {
+		this.data = data;
+	}
+
+}
+* */
+public class solution {
+	public static LinkedListNode<Integer> skipMdeleteN(LinkedListNode<Integer> head, int M, int N) {
+		
+        if(M==0)
+            return null;
+        
+        
+     LinkedListNode<Integer> curr = head, rem;
+    int count;
+    //Move M nodes and delete N nodes
+    while(curr!=null)
+    {
+        for (count = 1; count<M && curr!= null; count++)
+        {
+            curr = curr.next;
+        }
+        if (curr == null)
+        {
+            return head;
+        }
+        rem = curr.next;
+        for(count = 1; count<=N && rem!= null; count++)
+        {
+            LinkedListNode<Integer> temp = rem;
+            rem = rem.next;
+            
+        }
+        //link to remaining nodes
+        //continue iteration for the remaining nodes
+        curr.next = rem;
+        curr = rem;
+    }
+        return head;
+    }
+	
+}
+
+
+
+
+	
