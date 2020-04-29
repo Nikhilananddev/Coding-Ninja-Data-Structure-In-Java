@@ -1,0 +1,65 @@
+// Code : Balanced Parenthesis
+// Send Feedback
+// Given a string expression, check if brackets present in the expression are balanced or not. Brackets are balanced if the bracket which opens last, closes first.
+// You need to return true if it is balanced, false otherwise.
+// Note: This problem was asked in initial rounds in Facebook
+// Sample Input 1 :
+// { a + [ b+ (c + d)] + (e + f) }
+// Sample Output 1 :
+// true
+// Sample Input 2 :
+// { a + [ b - c } ]
+// Sample Output 2 :
+// false
+
+import java.util.*;
+public class Solution {
+    
+  public static boolean matchingPeer(char open , char close){
+	if ( open == '(' && close == ')'){
+		return true;
+	}
+	if ( open == '[' && close == ']'){
+		return true;
+	}
+      if ( open == '{' && close == '}'){
+		return true;
+	}
+	// you can add more open and close rule
+	
+	else{
+	return false;
+	}
+}
+
+	public static boolean checkBalanced(String equation) 
+    {
+		// Write your code here
+		char[] c = equation.toCharArray();
+	Stack <Character> myStack= new Stack <Character> ();
+	
+	for (int i = 0; i < c.length; i++)
+    {
+		if(c[i]=='(' || c[i] == '[' || c[i] == '{'){
+			myStack.push(c[i]);
+            continue;
+		}
+		else if (c[i]== ')' || c[i]==']' || c[i] == '}'){
+            	if(myStack.isEmpty())
+                    return false;
+				if(matchingPeer(myStack.peek(),c[i]) == true){
+					myStack.pop();
+				
+				} else {
+					return false;
+				}
+		}
+	}
+		if(myStack.isEmpty()){
+			return true;
+		}	
+		else {
+			return false;
+		}
+    }
+}
