@@ -1,0 +1,53 @@
+// Check redundant brackets
+// Send Feedback
+// Given a string mathematical expression, return true if redundant brackets are present in the expression. Brackets are redundant if there is nothing inside the bracket or more than one pair of brackets are present.
+// Assume the given string expression is balanced and contains only one type of bracket i.e. ().
+// Note: You will not get partial score for this problem. You will get marks only if all test cases are passed.
+// Input Format :
+// String s (Expression)
+// Output Format :
+// true or false
+// Sample Input 1:
+// ((a + b)) 
+// Sample Output 1:
+// true
+// Sample Input 2:
+// (a+b) 
+// Sample Output 2:
+// false
+
+import java.util.Stack;
+import java.util.*;
+public class solution {
+	
+	public static boolean checkRedundantBrackets(String input) {
+		// Write your code here
+		Stack<Character> stack=new Stack<Character>();
+          //Stack<string> numbers = new Stack<string>();
+        for(int i=0;i<input.length();i++)
+        {
+         stack.push(input.charAt(i));  
+        }
+        int count=0;
+        // boolean result=true;
+        while(!stack.empty())
+        {
+            if(stack.pop()==')')
+            {
+                while(stack.peek()!='('  && !stack.empty() ){
+                    count++; stack.pop();}
+              //  System.out.println(count);
+                
+                if(count==0)
+                    return true;
+                else
+                    count=0;
+                // continue;
+            }
+            //stack.pop();
+        }
+        
+        
+        return false;
+	}
+}
