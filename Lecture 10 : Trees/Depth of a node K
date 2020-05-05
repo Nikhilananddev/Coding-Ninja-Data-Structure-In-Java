@@ -6,7 +6,7 @@ public static void printAtK(TreeNode<Integer> root, int k) {
 			System.out.println(root.data);
 			return;
 		}
-		for (int i = 0; i < root.children.size(); i++) {
+		for (TreeNode<Integer> child : root.children) {
 			printAtK(root.children.get(i), k - 1);
 		}
 	}
