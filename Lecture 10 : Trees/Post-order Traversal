@@ -1,0 +1,53 @@
+// Code : Post-order Traversal
+// Send Feedback
+// Given a generic tree, print the post-order traversal of given tree.
+// Post-order traversal is : Children and then Root
+// Input format :
+// Elements in level order form separated by space (as per done in class). Order is - 
+// Root_data, n (No_Of_Child_Of_Root), n children, and so on for every element 
+// Output Format :
+// Post-order traversal, elements separated by space
+// Sample Input :
+// 10 3 20 30 40 2 400 50 0 0 0 0 
+// Sample Output :
+// 400 50 20 30 40 10
+
+
+
+public class Solution {
+
+	/*	TreeNode structure 
+	 * 
+	 * class TreeNode<T> {
+		T data;
+		ArrayList<TreeNode<T>> children;
+
+		TreeNode(T data){
+			this.data = data;
+			children = new ArrayList<TreeNode<T>>();
+		}
+	}*/
+
+	public static void postOrder(TreeNode<Integer> root){
+		/* Your class should be named Solution.
+		 * Don't write main() function.
+		 * Don't read input, it is passed as function argument.
+		 * Print output as specified in the question
+		 */
+        if(root.children.size()==0){
+            System.out.print(root.data+" ");
+        	return;
+        }
+        
+        for(TreeNode<Integer> child:root.children)
+        {
+            postOrder(child);
+        }
+        
+        
+        System.out.print(root.data+" ");
+  
+        
+	}
+
+}
