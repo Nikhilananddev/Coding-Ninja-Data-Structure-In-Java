@@ -1,0 +1,80 @@
+// ZigZag tree
+// Send Feedback
+// Given a binary tree, print the zig zag order i.e print level 1 from left to right, level 2 from right to left and so on. This means odd levels should get printed from left to right and even level right to left.
+// Input format :
+
+// Elements in level order form (separated by space)
+
+// (If any node does not have left or right child, take -1 in its place)
+
+// Output Format :
+
+// Elements are printed level wise, each level in new line (separated by space).
+
+// Sample Input :
+// 5 6 10 2 3 -1 -1 -1 -1 -1 9 -1 -1
+// Sample Output :
+// 5
+// 10 6
+// 2 3
+// 9
+
+import java.util.ArrayList;
+import java.util.*;
+
+public class Solution {
+
+	/*	Binary Tree Node class
+	 * 
+	 * class BinaryTreeNode<T> {
+		T data;
+		BinaryTreeNode<T> left;
+		BinaryTreeNode<T> right;
+
+		public BinaryTreeNode(T data) {
+			this.data = data;
+		}
+	}
+	 */
+
+	public static void printZigZag(BinaryTreeNode<Integer> root) {
+		
+
+Stack<BinaryTreeNode<Integer>> s1 = new Stack<BinaryTreeNode<Integer>>();
+        Stack<BinaryTreeNode<Integer>> s2 = new Stack<BinaryTreeNode<Integer>>();
+        
+        s1.push(root);
+        s2.push(root);
+        while(!s1.empty() && !s2.empty()){
+            BinaryTreeNode<Integer> pp = s2.pop();
+            while(!s1.empty()){
+                if(s1.peek().left != null){
+                    s2.push(s1.peek().left);             
+                }
+                if(s1.peek().right != null){
+                    s2.push(s1.peek().right);                
+                }
+                System.out.print(s1.pop().data+" ");
+            }
+            System.out.println();
+        
+            while(!s2.empty()){
+                if(s2.peek().right != null){
+                    s1.push(s2.peek().right);                
+                }
+                if(s2.peek().left != null){
+                    s1.push(s2.peek().left);                    
+                }
+                System.out.print(s2.pop().data+" ");
+            }
+            System.out.println();
+            s2.push(root);
+        }
+        
+
+        
+        
+	}
+
+
+}
