@@ -1,0 +1,92 @@
+Level wise linkedlist
+// Send Feedback
+// Given a binary tree, write code to create a separate linked list for each level. You need to return the array which contains head of each level linked list.
+// Input format :
+
+// Elements in level order form (separated by space). If any node does not have left or right child, take -1 in its place.
+
+// Output format : Each level linked list is printed in new line (elements separated by space).
+
+// Sample Input :
+// 5 6 10 2 3 -1 -1 -1 -1 -1 9 -1 -1
+// Sample Output :
+// 5 
+// 6 10 
+// 2 3 
+// 9
+
+import java.util.*;
+
+
+public class Solution {
+
+	/*	Binary Tree Node class
+	 * 
+	 * class BinaryTreeNode<T> {
+		T data;
+		BinaryTreeNode<T> left;
+		BinaryTreeNode<T> right;
+
+		public BinaryTreeNode(T data) {
+			this.data = data;
+		}
+	}
+	 */
+
+	/* class Node<T> {
+		T data;
+		Node<T> next;
+		Node(T data){
+			this.data = data;
+		}
+	}
+*/
+	public static ArrayList<Node<BinaryTreeNode<Integer>>> LLForEachLevel(BinaryTreeNode<Integer> root) 
+    {
+	     
+        
+       ArrayList<Node<BinaryTreeNode<Integer>>> al = new ArrayList<Node<BinaryTreeNode<Integer>>>();
+        QueueUsingLL<BinaryTreeNode<Integer>> myQ = new QueueUsingLL<BinaryTreeNode<Integer>>();
+        myQ.enqueue(root);
+        myQ.enqueue(null);
+        try{ 
+            Node<BinaryTreeNode<Integer>> head = null;
+            Node<BinaryTreeNode<Integer>> tail = null;
+            while(!myQ.isEmpty()){
+                BinaryTreeNode<Integer> temp = myQ.dequeue();
+                if(temp == null){
+                //    System.out.println();
+                    al.add(head);
+                    head = null;
+                    tail = null;
+                    if(!myQ.isEmpty()){
+                     myQ.enqueue(null);   
+                    }
+                    continue;
+                }
+            //    System.out.print(temp.data+" ");
+                Node<BinaryTreeNode<Integer>> var = new Node<BinaryTreeNode<Integer>>(temp);
+                if(head == null){
+                    head = var;
+                    tail = var;
+                }
+                else{
+                    tail.next = var;
+                    tail = var;   
+                }
+                if(temp.left != null){
+                    myQ.enqueue(temp.left);
+                }
+                if(temp.right != null){
+                    myQ.enqueue(temp.right);
+                }
+                
+            }
+        }
+            catch(Exception e){
+                
+            }
+        return al;
+	}
+
+}
