@@ -32,7 +32,28 @@ public class Solution {
 	
 	
 	public static TreeNode<Integer> maxSumNode(TreeNode<Integer> root){
-		// Write your code here
+		if(root == null)
+		return null;
+		TreeNode<Integer> temp=null;
+		Queue<TreeNode<Integer>> q=new LinkedList<>();
+		q.add(root);
+		int s=0;
+		while(!q.isEmpty()){
+			int size=q.size();
+			for(int i=0;i<size;i++){
+				TreeNode<Integer>temp1=q.poll();
+				int s1=temp1.data;
+				for(int j=0;j<temp1.children.size();j++){
+					s1=s1+temp1.children.get(j).data;
+					q.add(temp1.children.get(j));
+				}
+				if(s1>s){
+					s=s1;
+					temp=temp1;
+				}
+			}
+		}
+		return temp;
 	}
 	
 		
